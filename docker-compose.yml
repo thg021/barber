@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+    db:
+        image: postgres
+        container_name: gostack_pg
+        restart: always
+        environment:
+            POSTGRES_PASSWORD: docker
+        ports:
+            - "5432:5432"
+        volumes:
+            - /data/mount:/var/lib/postgresql/data
