@@ -6,6 +6,7 @@ interface Request {
     password: string;
 }
 import { hash } from 'bcryptjs';
+import AppError from '../errors/AppError';
 
 class CreateUserService {
     public async execute({ name, email, password }: Request): Promise<User> {
@@ -16,7 +17,7 @@ class CreateUserService {
         });
 
         if (checkUserExists) {
-            throw new Error('User already exists!');
+            throw new AppError('User already exists!');
         }
 
         const hashedPassword = await hash(password, 8);
